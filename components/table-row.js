@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { map, values } from 'lodash'
+import { kebabCase, map, values } from 'lodash'
 
 import { COMPUTED_FIELDS } from '../constants/fields'
 
@@ -12,11 +12,18 @@ const getFieldValue = (row, field) => {
     }
 }
 
-const TableRow = ({ row }) => {
+const TableRow = ({ keyStub, row }) => {
     return (
-        <tr>
+        <tr className="table-row">
             {map(COMPUTED_FIELDS, field => (
-                <td>{getFieldValue(row, field)}</td>
+                <td
+                    className={`table-cell table-cell-${kebabCase(
+                        field.key
+                    )}`}
+                    key={`${keyStub}-${field.key}`}
+                >
+                    {getFieldValue(row, field)}
+                </td>
             ))}
         </tr>
     )

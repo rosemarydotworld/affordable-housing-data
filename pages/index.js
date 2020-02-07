@@ -10,7 +10,12 @@ function Index() {
     const [data] = useViewOfData(corpus)
 
     return (
-        <Table rows={data} />
+        <>
+            <header className="page-header">
+                <h1>Affordable Housing Portfolio</h1>
+            </header>
+            <Table rows={data} />
+        </>
     )
 }
 

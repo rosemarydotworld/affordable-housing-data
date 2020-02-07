@@ -1,4 +1,5 @@
-import { filter, map, round } from 'lodash'
+import { filter, map } from 'lodash'
+import { getAddress, getAffordablePercentage } from '../utilities/fields'
 
 // Fields to pick out of raw JSON
 const PICKED_FIELDS = [
@@ -11,7 +12,6 @@ const PICKED_FIELDS = [
     { key: 'total_units', name: 'Total Units', visible: true },
     { key: 'affordable_units', name: 'Affordable Units', visible: true },
 ]
-export const PICKED_FIELD_NAMES = map(PICKED_FIELDS, field => field.name)
 export const PICKED_FIELD_KEYS = map(PICKED_FIELDS, field => field.key)
 
 // Fields from that raw JSON to show...
@@ -23,13 +23,11 @@ export const COMPUTED_FIELDS = [
     {
         key: 'address',
         name: 'Address',
-        value: ({ street_number, street_name, street_type }) =>
-            `${street_number} ${street_name} ${street_type}`,
+        value: getAddress,
     },
     {
         key: 'percentage_afforable',
         name: 'Percentage Affordable',
-        value: ({ affordable_units, total_units }) =>
-            round(affordable_units / total_units * 100, 2),
+        value: getAffordablePercentage,
     },
 ]

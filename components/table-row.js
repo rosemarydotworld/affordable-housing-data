@@ -12,21 +12,32 @@ const getFieldValue = (row, field) => {
     }
 }
 
-const TableRow = ({ keyStub, row }) => {
-    return (
-        <tr className="table-row">
-            {map(COMPUTED_FIELDS, field => (
-                <td
-                    className={`table-cell table-cell-${kebabCase(
-                        field.key
-                    )}`}
-                    key={`${keyStub}-${field.key}`}
-                >
-                    {getFieldValue(row, field)}
+const TableRow = ({ keyStub, row }) => (
+    <tr role="row" className="table-row">
+        {map(COMPUTED_FIELDS, field => {
+            const cellClass = `table-cell table-cell-${kebabCase(field.key)}`
+            const cellKey = `${keyStub}-${field.key}`
+            const cellLabelId = `${cellKey}-label`
+
+            return (
+                <td role="cell" className={cellClass} key={cellKey}>
+                    <span
+                        aria-hidden
+                        id={cellLabelId}
+                        className="table-cell-label"
+                    >
+                        {field.name}
+                    </span>
+                    <span
+                        aria-labelledby={cellLabelId}
+                        className="table-cell-value"
+                    >
+                        {getFieldValue(row, field)}
+                    </span>
                 </td>
-            ))}
-        </tr>
-    )
-}
+            )
+        })}
+    </tr>
+)
 
 export default TableRow

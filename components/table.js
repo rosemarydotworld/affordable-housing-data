@@ -8,15 +8,21 @@ import TableRow from './table-row'
 
 const Table = ({ rows }) => (
     <div className="table-wrapper">
-        <table className="table">
-            <thead className="table-header">
-                <tr className="table-row">
+        <table role="table" className="table">
+            <thead role="rowgroup" className="table-header">
+                <tr role="row" className="table-row">
                     {map(COMPUTED_FIELDS, field => (
-                        <th className="table-cell" key={`rowhead-${field.key}`}>{field.name}</th>
+                        <th
+                            role="columnheader"
+                            className="table-cell"
+                            key={`rowhead-${field.key}`}
+                        >
+                            {field.name}
+                        </th>
                     ))}
                 </tr>
             </thead>
-            <tbody className="table-body">
+            <tbody role="rowgroup" className="table-body">
                 {map(rows, row => (
                     <TableRow
                         key={`row-${row.project_id}`}

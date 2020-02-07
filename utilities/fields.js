@@ -2,7 +2,7 @@ import React from 'react'
 import { round } from 'lodash'
 
 const getAddressUrl = query => {
-    return `https://www.google.com/maps/search/?api=1&query=${query} San Francisco`
+    return `https://www.google.com/maps/search/?api=1&query=${query}, San Francisco`
 }
 
 const addressIsConfidential = street_name =>

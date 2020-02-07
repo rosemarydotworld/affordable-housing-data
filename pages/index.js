@@ -7,10 +7,10 @@ import Table from '../components/table'
 import useViewOfData from '../hooks/use-view-of-data'
 
 function Index() {
-    const [schema, data] = useViewOfData(corpus)
+    const [data] = useViewOfData(corpus)
 
     return (
-        <Table schema={schema} rows={data} />
+        <Table rows={data} />
     )
 }
 

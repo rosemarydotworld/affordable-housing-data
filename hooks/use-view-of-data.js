@@ -1,14 +1,13 @@
 import { useMemo } from 'react'
 import { map, pick } from 'lodash'
 
-import { SHOWN_FIELD_KEYS } from '../constants/fields'
+import { PICKED_FIELD_KEYS } from '../constants/fields'
 
 const useViewOfData = corpus =>
     useMemo(() => {
-        const schema = SHOWN_FIELD_KEYS
-        const data = map(corpus, row => pick(row, SHOWN_FIELD_KEYS))
+        const data = map(corpus, row => pick(row, PICKED_FIELD_KEYS))
 
-        return [schema, data]
+        return [data]
     }, [corpus])
 
 export default useViewOfData

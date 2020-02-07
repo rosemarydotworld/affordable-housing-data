@@ -1,25 +1,17 @@
 import React from 'react'
 
-import { map, values } from 'lodash'
+import { map } from 'lodash'
 
-const TableRow = ({ row }) => {
-    const columns = values(row)
+import { COMPUTED_FIELDS } from '../constants/fields'
 
-    return (
-        <tr>
-            {map(columns, column => (
-                <td>{column}</td>
-            ))}
-        </tr>
-    )
-}
+import TableRow from './table-row'
 
-const Table = ({ schema, rows }) => (
+const Table = ({ rows }) => (
     <table>
         <thead>
             <tr>
-                {map(schema, column => (
-                    <td>{column}</td>
+                {map(COMPUTED_FIELDS, field => (
+                    <td>{field.name}</td>
                 ))}
             </tr>
         </thead>

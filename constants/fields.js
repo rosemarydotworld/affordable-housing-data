@@ -1,5 +1,6 @@
 import { filter, map } from 'lodash'
-import { getAddress, getAffordablePercentage } from '../utilities/fields'
+import AffordablePercentage from '../components/affordable-percentage'
+import Address from '../components/address'
 
 // Fields to pick out of raw JSON
 const PICKED_FIELDS = [
@@ -17,17 +18,17 @@ export const PICKED_FIELD_KEYS = map(PICKED_FIELDS, field => field.key)
 // Fields from that raw JSON to show...
 const VISIBLE_FIELDS = filter(PICKED_FIELDS, 'visible')
 
-// Extra fields computed from JSON values
+// Extra fields computed from JSON row values
 export const COMPUTED_FIELDS = [
     ...VISIBLE_FIELDS,
     {
         key: 'address',
         name: 'Address',
-        value: getAddress,
+        value: Address,
     },
     {
         key: 'percentage_afforable',
-        name: 'Percentage Affordable',
-        value: getAffordablePercentage,
+        name: 'Affordable Units %',
+        value: AffordablePercentage,
     },
 ]

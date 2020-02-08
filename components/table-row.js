@@ -3,14 +3,7 @@ import React from 'react'
 import { kebabCase, map, values } from 'lodash'
 
 import { COMPUTED_FIELDS } from '../constants/fields'
-
-const getFieldValue = (row, field) => {
-    if (typeof field.value === 'function') {
-        return field.value(row)
-    } else {
-        return row[field.key]
-    }
-}
+import { getFieldValue } from '../utilities/fields'
 
 const TableRow = ({ keyStub, row }) => (
     <tr role="row" className="table-row">

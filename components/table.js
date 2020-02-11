@@ -2,7 +2,7 @@ import React from 'react'
 
 import { map } from 'lodash'
 
-import { COMPUTED_FIELDS } from '../constants/fields'
+import { SHOWN_FIELDS } from '../constants/fields'
 
 import TableRow from './table-row'
 
@@ -11,7 +11,7 @@ const Table = ({ rows }) => (
         <table role="table" className="table">
             <thead role="rowgroup" className="table-header">
                 <tr role="row" className="table-row">
-                    {map(COMPUTED_FIELDS, field => (
+                    {map(SHOWN_FIELDS, field => (
                         <th
                             role="columnheader"
                             className="table-cell"

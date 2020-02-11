@@ -2,12 +2,12 @@ import React from 'react'
 
 import { kebabCase, map, values } from 'lodash'
 
-import { COMPUTED_FIELDS } from '../constants/fields'
+import { SHOWN_FIELDS } from '../constants/fields'
 import { getFieldValue } from '../utilities/fields'
 
 const TableRow = ({ keyStub, row }) => (
     <tr role="row" className="table-row">
-        {map(COMPUTED_FIELDS, field => {
+        {map(SHOWN_FIELDS, field => {
             const cellClass = `table-cell table-cell-${kebabCase(field.key)}`
             const cellKey = `${keyStub}-${field.key}`
             const cellLabelId = `${cellKey}-label`

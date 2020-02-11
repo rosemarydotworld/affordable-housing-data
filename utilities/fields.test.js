@@ -14,7 +14,7 @@ describe('getFieldValue', () => {
     const fakeComputedField = {
         key: 'id_and_name',
         name: 'ID and Name',
-        value: ({ project_id, project_name }) => `${project_id} ${project_name}`,
+        component: ({ project_id, project_name }) => `${project_id} ${project_name}`,
     }
 
     describe('with a primitive value', () => {

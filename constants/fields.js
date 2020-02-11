@@ -2,7 +2,19 @@ import { filter, map } from 'lodash'
 import AffordablePercentage from '../components/affordable-percentage'
 import Address from '../components/address'
 
-// Fields to pick out of raw JSON
+/**
+ * A field in the table, either containing a primitive value or a component for more complex display
+ * @typedef {Object} Field
+ * @property {string} key - unique id, identifies fields in raw JSON
+ * @property {string} name - human-readable name labelling field
+ * @property {boolean} visible - whether the field should display as a raw value
+ * @property {function} component - React component that displays a computed field
+ */
+
+/**
+ * Fields to pick out of raw JSON
+ * @type {Array.Field}
+ */
 const PICKED_FIELDS = [
     { key: 'project_id', name: 'Project ID', visible: false },
     { key: 'project_name', name: 'Project Name', visible: true },
@@ -18,17 +30,28 @@ export const PICKED_FIELD_KEYS = map(PICKED_FIELDS, field => field.key)
 // Fields from that raw JSON to show...
 const VISIBLE_FIELDS = filter(PICKED_FIELDS, 'visible')
 
-// Extra fields computed from JSON row values
-export const COMPUTED_FIELDS = [
-    ...VISIBLE_FIELDS,
+/**
+ * Fields computed from other raw JSON values
+ * @type {Array.Field}
+ */
+const COMPUTED_FIELDS = [
     {
         key: 'address',
         name: 'Address',
-        value: Address,
+        component: Address,
     },
     {
         key: 'percentage_afforable',
         name: 'Affordable Units %',
-        value: AffordablePercentage,
+        component: AffordablePercentage,
     },
+]
+
+/**
+ * Fields (both raw and computed) shown to the user
+ * @type {Array.Field}
+ */
+export const SHOWN_FIELDS = [
+    ...VISIBLE_FIELDS,
+    ...COMPUTED_FIELDS,
 ]
